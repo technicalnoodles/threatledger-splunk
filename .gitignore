@@ -1,4 +1,6 @@
-node_modules/
+node_modules
+build/
+outputs/
 dist/
 *.tsbuildinfo
 scripts/.schema-bundle.mjs

@@ -1,0 +1,36 @@
+/* This stylesheet is loaded only by the ThreatLedger view. The host marker
+   also prevents its layout rules from affecting other Splunk dashboards. */
+[role="main"]:has(#threatledger-host) > [data-view="views/shared/appbar/Master"] {
+  display: none !important;
+}
+.dashboard-body:has(#threatledger-host) {
+  padding: 0 !important;
+  min-width: 0;
+}
+.dashboard:has(#threatledger-host) > .dashboard-header { display: none; }
+.dashboard:has(#threatledger-host) .dashboard-panel { margin: 0; }
+.dashboard:has(#threatledger-host) .panel-body.html { padding: 0 !important; }
+#threatledger-host, #threatledger-host #root { width: 100%; min-width: 0; }
+#threatledger-host .app-shell {
+  height: calc(100vh - var(--threatledger-top-offset, 56px));
+  height: calc(100dvh - var(--threatledger-top-offset, 56px));
+  min-height: 0;
+}
+#threatledger-host .canvas { padding: 0; }
+#threatledger-host .paper {
+  width: 100%;
+  max-width: none;
+  min-height: 100%;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+}
+#threatledger-host .welcome-main { max-width: none; }
+@media (max-width: 650px) {
+  #threatledger-host .editor-top .actions {
+    width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}

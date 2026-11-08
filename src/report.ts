@@ -6,7 +6,10 @@ export type Data = Record<string, unknown>;
 export interface Field { id: string; name: string; type?: number; path?: string; options?: {value: string; text: string}[]; properties?: Field[]; description?: string }
 export interface Section { id: string; name?: string; path?: string; properties: Field[] }
 export interface Template { id: string; name: string; description: string; sections: Section[] }
-export interface Report { format: 'cti-workbench'; version: 1; id: string; templateId: string; data: Data; assets: Record<string, string> }
+export interface FindingReference { id: string; title: string; description: string; sourceId: string; sourceUrl: string; sectionId?: string; esSourceType?: 'finding' | 'finding_group' | 'investigation' | 'record'; esImportedAt?: string }
+export interface SearchReference { id: string; title: string; kind: 'adhoc' | 'saved'; query: string; earliest: string; latest: string; app: string; note: string; findingId?: string; savedName?: string; savedOwner?: string; capturedAt?: string; timeSource?: 'job' | 'captured'; sourceJobId?: string; originalEarliest?: string; originalLatest?: string }
+export interface References { findings: FindingReference[]; searches: SearchReference[] }
+export interface Report { format: 'cti-workbench'; version: 1; id: string; templateId: string; data: Data; assets: Record<string, string>; references?: References }
 export const templates = rawTemplates as Template[];
 
 export function createReport(templateId: string, data: Data = {}): Report {
@@ -20,6 +23,13 @@ export function parseWorkspace(input: string): Report {
   const doc = value as Record<string, unknown>;
   if (doc.format !== 'cti-workbench' || doc.version !== 1 || typeof doc.id !== 'string' || typeof doc.templateId !== 'string' || !templates.some(t => t.id === doc.templateId) || !doc.data || typeof doc.data !== 'object' || Array.isArray(doc.data)) throw new Error('This is not a supported ThreatLedger file.');
   if (doc.assets !== undefined && (!doc.assets || typeof doc.assets !== 'object' || Array.isArray(doc.assets) || Object.values(doc.assets).some(v => typeof v !== 'string'))) throw new Error('Invalid workspace images.');
+  if (doc.references !== undefined) {
+    const refs = doc.references as References;
+    const strings = (item: unknown, keys: string[]) => !!item && typeof item === 'object' && !Array.isArray(item) && keys.every(key => typeof (item as Data)[key] === 'string');
+    if (!refs || typeof refs !== 'object' || !Array.isArray(refs.findings) || !Array.isArray(refs.searches) ||
+      refs.findings.some(f => !strings(f, ['id', 'title', 'description', 'sourceId', 'sourceUrl']) || (f.sectionId !== undefined && typeof f.sectionId !== 'string')) ||
+      refs.searches.some(s => !strings(s, ['id', 'title', 'kind', 'query', 'earliest', 'latest', 'app', 'note']) || !['adhoc', 'saved'].includes(s.kind) || (s.findingId !== undefined && typeof s.findingId !== 'string') || (s.savedName !== undefined && typeof s.savedName !== 'string') || (s.savedOwner !== undefined && typeof s.savedOwner !== 'string') || (s.capturedAt !== undefined && typeof s.capturedAt !== 'string') || (s.sourceJobId !== undefined && typeof s.sourceJobId !== 'string') || (s.originalEarliest !== undefined && typeof s.originalEarliest !== 'string') || (s.originalLatest !== undefined && typeof s.originalLatest !== 'string') || (s.timeSource !== undefined && !['job', 'captured'].includes(s.timeSource)))) throw new Error('Invalid workspace references.');
+  }
   return { ...doc, assets: doc.assets || {} } as unknown as Report;
 }
 export function resolveImages(value: string, assets: Record<string, string>): string {

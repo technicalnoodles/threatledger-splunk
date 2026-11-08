@@ -1,0 +1,15 @@
+[]
+access = read : [ * ], write : [ admin, sc_admin ]
+export = none
+
+[collections/reports]
+access = read : [ admin, sc_admin, power, user ], write : [ admin, sc_admin, power ]
+export = none
+
+[transforms/threatledger_reports]
+access = read : [ admin, sc_admin, power, user ], write : [ admin, sc_admin, power ]
+export = none
+
+[views/threatledger]
+access = read : [ admin, sc_admin, power, user ], write : [ admin, sc_admin ]
+export = none

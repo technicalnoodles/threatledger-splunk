@@ -1,4 +1,4 @@
-import { Document, Packer, Paragraph, TextRun, HeadingLevel, ImageRun, Table, TableRow, TableCell, WidthType } from 'docx';
+import { Document, Packer, Paragraph, TextRun, HeadingLevel, ImageRun, Table, TableRow, TableCell, WidthType, ExternalHyperlink } from 'docx';
 import { jsPDF } from 'jspdf';
 import { marked } from 'marked';
 import type { ExportSection } from './presentation';
@@ -60,6 +60,7 @@ export async function createWord(title: string, sections: ExportSection[]): Prom
         const cells = fields.filter(f => row[f.id] !== undefined && row[f.id] !== null && row[f.id] !== '').map(f => new TableRow({ children: [new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: f.name, bold: true })] })] }), new TableCell({ children: markdownWord(clean(row[f.id])).length ? markdownWord(clean(row[f.id])) : [new Paragraph('')] })] }));
         if (cells.length) children.push(new Table({ rows: cells, width: { size: 100, type: WidthType.PERCENTAGE } }), new Paragraph(''));
       }
+      if (item.link) children.push(new Paragraph({ children: [new ExternalHyperlink({ link: item.link, children: [new TextRun({ text: 'Open in Splunk', style: 'Hyperlink' })] })] }));
     }
   }
   return new Uint8Array(await Packer.toArrayBuffer(new Document({ sections: [{ children }] })));
@@ -96,6 +97,7 @@ export async function createPdf(title: string, sections: ExportSection[]): Promi
       space(35); text(item.name, 11, true);
       if (typeof item.value === 'string') markdown(item.value);
       else item.value.forEach((row, index) => { text(`Entry ${index + 1}`, 10, true); for (const field of item.fields || []) if (row[field.id] !== undefined && row[field.id] !== null && row[field.id] !== '') text(`${field.name}: ${clean(row[field.id])}`); y += 6; });
+      if (item.link) { space(20); pdf.setFont('LiberationSans', 'normal'); pdf.setFontSize(10); pdf.textWithLink('Open in Splunk', 50, y, { url: item.link }); y += 19; }
     }
   }
   return new Uint8Array(pdf.output('arraybuffer'));

@@ -2,6 +2,29 @@
 
 ## Unreleased
 
+- Hide the Splunk app navigation rail on the ThreatLedger dashboard and expand the workspace into its space.
+
+- Added app icons to the web static directory as well as the app static directory for Splunk Cloud launcher compatibility.
+
+- Added standard and high-resolution app-list and menu icons using the existing ThreatLedger mark.
+
+- Versioned the Splunk dashboard bootstrap to avoid reusing an older cached frontend after upgrades, and show a loading state while shared reports are fetched.
+
+- Added clipboard PNG and JPEG pasting in narrative fields; pasted images are embedded and saved like uploaded images.
+
+- Added read-only Enterprise Security finding and investigation prefill by ID, with editable review and preserved draft text.
+
+- Rebuilt as version 0.2.4 with a Splunk app manifest and aligned package versions.
+
+- Capture fixed search time windows, including the original effective bounds from completed Splunk search jobs, and prevent legacy relative links from silently drifting.
+
+- Expanded the Splunk-hosted workspace to fill the available app area while retaining Splunk navigation.
+
+- Corrected finding and search reference styling when embedded in Splunk Web.
+
+- Added an initial Splunk app package with shared KV Store reports, a report lookup, finding references, linked searches, and portable workspace compatibility.
+- Added shared report conflict warnings, access guidance, and explicit live-deployment limitations.
+
 - Created a separate starting point for future Splunk app development.
 - Removed the privacy and normal browser-recovery notes from the editor.
 - Aligned the report tab bar and its first tab with the outline drawer.
