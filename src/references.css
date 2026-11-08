@@ -1,0 +1,65 @@
+.references-editor { display: grid; gap: 36px; padding: 30px 40px 40px; }
+.reference-section > h2 { margin: 0 0 8px; font-size: 19px; }
+.reference-section > p { color: var(--text-muted, #aab4c0); line-height: 1.5; max-width: 70ch; }
+.reference-empty { padding: 16px 0; }
+.reference-list { list-style: none; padding: 0; margin: 20px 0; border-top: 1px solid #34414f; }
+.reference-list li { display: flex; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 1px solid #34414f; }
+.reference-list p { margin: 8px 0; white-space: pre-wrap; }
+.reference-list a { color: #80aaff; text-decoration: underline; text-underline-offset: 3px; }
+.reference-actions { display: flex; gap: 12px; align-items: start; }
+.reference-actions button, .reference-form > button:not([data-slot]) { color: #bfcddd; padding: 4px; }
+.reference-form { margin-top: 22px; padding-top: 22px; border-top: 1px solid #34414f; }
+.reference-form h3 { margin: 0 0 18px; font-size: 15px; }
+.reference-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+.reference-grid label { display: grid; gap: 7px; color: #d5dee8; font-size: 13px; font-weight: 600; }
+.reference-grid select { width: 100%; min-height: 36px; padding: 6px 10px; color: #edf2f8; background: #131a23; border: 1px solid #46515f; border-radius: 6px; }
+.reference-wide { grid-column: 1 / -1; }
+.reference-error { padding: 12px; border: 1px solid #cf7e7e; color: #ffd5d5; }
+.catalog-list { display: grid; max-height: 50vh; overflow-y: auto; }
+.catalog-list button { display: flex; justify-content: space-between; text-align: left; padding: 14px; border-top: 1px solid #34414f; }
+.catalog-list button:hover { background: #243140; }
+.catalog-list span { color: #b7c2ce; font-size: 12px; }
+@media (max-width: 650px) { .references-editor { padding: 24px 20px 30px; } .reference-grid { grid-template-columns: 1fr; } .reference-wide { grid-column: auto; } .reference-list li { flex-direction: column; } }
+
+/* Splunk Web's dashboard styles otherwise override the embedded editor. */
+#root .references-editor .reference-section > h2,
+#root .references-editor .reference-form h3,
+#root .references-editor .reference-list strong { color: #e7edf5; }
+#root .references-editor .reference-list p,
+#root .references-editor .reference-list span { color: #bec8d3; }
+#root .references-editor .reference-grid input,
+#root .references-editor .reference-grid textarea,
+#root .references-editor .reference-grid select {
+  box-sizing: border-box;
+  width: 100%;
+  color: #e7edf5;
+  background: #0b1118;
+  border: 1px solid #46515f;
+  border-radius: 4px;
+  caret-color: #fff;
+}
+#root .references-editor .reference-grid textarea { min-height: 80px; padding: 10px 12px; }
+#root .references-editor .reference-grid input { min-height: 36px; padding: 7px 12px; }
+#root .references-editor .reference-grid input::placeholder,
+#root .references-editor .reference-grid textarea::placeholder { color: #aab4c0; opacity: 1; }
+#root .references-editor .reference-actions button,
+#root .references-editor .reference-form > button:not([data-slot]) {
+  background: transparent;
+  border: 0;
+  color: #bfcddd;
+}
+#root .references-editor .reference-actions button:hover,
+#root .references-editor .reference-form > button:not([data-slot]):hover { color: #fff; }
+.reference-job { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 14px; align-items: end; margin-bottom: 20px; }
+.reference-job label { display: grid; gap: 7px; color: #d5dee8; font-size: 13px; font-weight: 600; }
+.reference-job p, .reference-time-help { grid-column: 1 / -1; margin: 0 0 14px; color: #bec8d3; font-size: 12px; line-height: 1.5; }
+#root .references-editor .reference-job input { box-sizing: border-box; width: 100%; min-height: 36px; padding: 7px 12px; color: #e7edf5; background: #0b1118; border: 1px solid #46515f; border-radius: 4px; caret-color: #fff; }
+#root .references-editor .reference-job p, #root .references-editor .reference-time-help { color: #bec8d3; }
+@media (max-width: 650px) { .reference-job { grid-template-columns: 1fr; } .reference-job p { grid-column: auto; } }
+
+.reference-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.reference-import { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 10px 14px; }
+#root .references-editor .reference-import p { grid-column: 1 / -1; }
+#root .references-editor .reference-import p, #root .references-editor .reference-import-notice { margin: 0; color: #bec8d3; font-size: 12px; line-height: 1.5; }
+#root .references-editor .reference-import-notice { margin: 14px 0; }
+@media (max-width: 650px) { .reference-import { grid-template-columns: 1fr; } .reference-import p { grid-column: auto; } }

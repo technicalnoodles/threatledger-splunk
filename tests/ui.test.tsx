@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import { App } from '../src/main';
@@ -162,5 +162,45 @@ describe('report authoring interface', () => {
     await act(async () => { pending?.onload?.(); });
     expect((editor as HTMLTextAreaElement).value).toContain('Original added later');
     expect((editor as HTMLTextAreaElement).value).toContain('cti-image:');
+  });
+
+  it('embeds an image pasted into a narrative and restores it in preview', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: /Campaign Report/i }));
+    await user.click(screen.getByRole('button', { name: /Executive Summary/i }));
+    const editor = screen.getByLabelText('Executive Summary');
+    const image = new File(['clipboard image'], 'screenshot.png', { type: 'image/png' });
+    const accepted = fireEvent.paste(editor, { clipboardData: { items: [{ kind: 'file', type: image.type, getAsFile: () => image }] } });
+    expect(accepted).toBe(false);
+    await waitFor(() => expect((editor as HTMLTextAreaElement).value).toContain('cti-image:'));
+    const recovery = JSON.parse(localStorage.getItem('cti-workbench-recovery-v1')!);
+    expect(Object.values(recovery[0].assets)).toContain('data:image/png;base64,Y2xpcGJvYXJkIGltYWdl');
+    cleanup();
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: /Executive Summary/i }));
+    await user.click(screen.getByRole('button', { name: 'Preview' }));
+    expect(screen.getByRole('img', { name: 'screenshot.png' })).toHaveAttribute('src', 'data:image/png;base64,Y2xpcGJvYXJkIGltYWdl');
+  });
+
+  it('does not intercept ordinary text paste', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: /Campaign Report/i }));
+    await user.click(screen.getByRole('button', { name: /Executive Summary/i }));
+    const editor = screen.getByLabelText('Executive Summary');
+    expect(fireEvent.paste(editor, { clipboardData: { items: [{ kind: 'string', type: 'text/plain' }] } })).toBe(true);
+  });
+
+  it('reports an unsupported pasted image without inserting it', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: /Campaign Report/i }));
+    await user.click(screen.getByRole('button', { name: /Executive Summary/i }));
+    const editor = screen.getByLabelText('Executive Summary');
+    const image = new File(['gif'], 'image.gif', { type: 'image/gif' });
+    expect(fireEvent.paste(editor, { clipboardData: { items: [{ kind: 'file', type: image.type, getAsFile: () => image }] } })).toBe(false);
+    expect(await screen.findByText('Choose a PNG or JPEG image.')).toBeVisible();
+    expect((editor as HTMLTextAreaElement).value).not.toContain('cti-image:');
   });
 });
