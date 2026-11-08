@@ -1,8 +1,10 @@
-# ThreatLedger
+# ThreatLedger for Splunk
 
 Created by [technicalnoodles](https://github.com/technicalnoodles).
 
 A local-first React editor for structured cyber threat intelligence reports, based on [CTI Blueprints](https://github.com/center-for-threat-informed-defense/cti-blueprints). It uses the upstream four report templates and adds Markdown, embedded images, and direct Word and PDF downloads.
+
+This repository is the starting point for a future Splunk app. It currently runs as the standalone ThreatLedger editor; Splunk app packaging and integrations have not yet been implemented. The standalone project is available at [technicalnoodles/threatledger](https://github.com/technicalnoodles/threatledger).
 
 ## Run locally
 

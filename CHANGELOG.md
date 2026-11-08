@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Created a separate starting point for future Splunk app development.
 - Removed the privacy and normal browser-recovery notes from the editor.
 - Aligned the report tab bar and its first tab with the outline drawer.
 - Identified the current report and repeated entry actions for assistive technology, and distinguished untitled reports by number and blueprint.
