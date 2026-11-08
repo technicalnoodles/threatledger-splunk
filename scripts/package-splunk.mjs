@@ -26,7 +26,10 @@ if (!/^\d+\.\d+\.\d+$/.test(version)) throw new Error('Invalid app version for b
 const bootstrapName = `bootstrap-${version}.js`;
 const view = await readFile(path.join(app, 'default/data/ui/views/threatledger.xml'), 'utf8');
 if (!view.includes(`script="${bootstrapName}"`)) throw new Error('Dashboard bootstrap filename does not match the app version.');
+const layoutName = `splunk-layout-${version}.css`;
+if (!view.includes(`stylesheet="${layoutName}"`)) throw new Error('Dashboard stylesheet filename does not match the app version.');
 const staticDir = path.join(app, 'appserver/static');
+await readFile(path.join(staticDir, layoutName));
 await mkdir(staticDir, { recursive: true });
 await cp('dist/assets', path.join(staticDir, 'assets'), { recursive: true });
 const bootstrap = `require(['splunkjs/mvc/simplexml/ready!'], function () {\n  var marker = '/app/threatledger/';\n  var index = window.location.pathname.indexOf(marker);\n  if (index < 0) { document.getElementById('root').textContent = 'Unable to determine the Splunk app path.'; return; }\n  var base = window.location.pathname.slice(0, index) + '/static/app/threatledger/';\n  ${[...cssFiles].map(css => `var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + ${JSON.stringify(css)}; document.head.appendChild(css);`).join('\n  ')}\n  import(base + ${JSON.stringify(entry.file)}).catch(function () { document.getElementById('root').textContent = 'Unable to load ThreatLedger. Check app assets and browser console.'; });\n});\n`;

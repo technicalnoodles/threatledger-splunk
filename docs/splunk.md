@@ -2,7 +2,11 @@
 
 ## App icon
 
-The app package includes `static/appIcon.png`, `appIcon_2x.png`, and matching `appIconAlt` variants for the Splunk app list and menus. Version 0.2.9 also places identical icons in `appserver/static` for deployments whose icon endpoint resolves web static assets. On the tested Splunk Cloud 10.5.2605.3 deployment, version 0.2.8 was installed but the launcher REST endpoint returned the generic icon even with a cache-busting URL; the 0.2.9 behavior still requires live verification. The editable source is `assets/threatledger-app-icon.svg`, based on the Lucide FileText icon (ISC) and the existing ThreatLedger colors.
+The app package includes `static/appIcon.png`, `appIcon_2x.png`, and matching `appIconAlt` variants for the Splunk app list and menus. Version 0.2.9 also places identical icons in `appserver/static` for deployments whose icon endpoint resolves web static assets. On the tested Splunk Cloud 10.5.2605.3 deployment, versions 0.2.8 and 0.2.9 were installed but the launcher REST endpoint returned the generic icon even with a cache-busting URL, while the appserver static endpoint served the custom image. The editable source is `assets/threatledger-app-icon.svg`, based on the Lucide FileText icon (ISC) and the existing ThreatLedger colors.
+
+## Dashboard layout
+
+The ThreatLedger dashboard hides the Splunk app navigation rail while preserving the global header and ThreatLedger report outline. The rule is scoped to the app dashboard and uses a Splunk Web selector observed on Splunk Cloud Platform 10.5.2605.3; the 0.2.10 package needs installation and live verification, and other Splunk versions may use different markup.
 
 ## Data and access
 

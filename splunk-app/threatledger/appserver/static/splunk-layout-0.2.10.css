@@ -1,5 +1,8 @@
 /* This stylesheet is loaded only by the ThreatLedger view. The host marker
    also prevents its layout rules from affecting other Splunk dashboards. */
+[role="main"]:has(#threatledger-host) > [data-view="views/shared/appbar/Master"] {
+  display: none !important;
+}
 .dashboard-body:has(#threatledger-host) {
   padding: 0 !important;
   min-width: 0;

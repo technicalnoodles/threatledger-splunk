@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Hide the Splunk app navigation rail on the ThreatLedger dashboard and expand the workspace into its space.
+
 - Added app icons to the web static directory as well as the app static directory for Splunk Cloud launcher compatibility.
 
 - Added standard and high-resolution app-list and menu icons using the existing ThreatLedger mark.
