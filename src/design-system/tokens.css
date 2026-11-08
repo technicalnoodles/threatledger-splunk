@@ -1,0 +1,140 @@
+/* Splunk by Cisco brand guide, reviewed 2026-11-08. See docs/design-system.md. */
+@font-face {
+  font-family: Inter;
+  src: url('../inter.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* Tailwind v4 utilities: e.g. bg-brand-panel, text-brand-link, font-brand. */
+@theme inline {
+  --color-brand-page: var(--surface-page);
+  --color-brand-panel: var(--surface-panel);
+  --color-brand-subtle: var(--surface-subtle);
+  --color-brand-raised: var(--surface-raised);
+  --color-brand-text: var(--text-primary);
+  --color-brand-muted: var(--text-secondary);
+  --color-brand-link: var(--link-dark);
+  --color-brand-border: var(--border-subtle);
+  --font-brand: var(--font-sans);
+  --font-brand-data: var(--font-data);
+}
+
+:root {
+  /* Brand primitives. Magenta and orange are paired in the gradient, not used as solid branding. */
+  --brand-magenta-05: #FFF2F9;
+  --brand-magenta-10: #FFDBEC;
+  --brand-magenta-20: #FFB2D6;
+  --brand-magenta-30: #FF7DBA;
+  --brand-magenta-40: #FF4FA4;
+  --brand-magenta-50: #FF007F;
+  --brand-magenta-60: #BD0D5F;
+  --brand-magenta-70: #80174B;
+  --brand-magenta-80: #591638;
+  --brand-magenta-90: #401028;
+  --brand-magenta-95: #240D19;
+  --brand-orange-05: #FFF8F0;
+  --brand-orange-10: #FFEDD6;
+  --brand-orange-20: #FFD7A6;
+  --brand-orange-30: #FFC278;
+  --brand-orange-40: #FFA838;
+  --brand-orange-50: #FF9000;
+  --brand-orange-60: #D97A00;
+  --brand-orange-70: #A16205;
+  --brand-orange-80: #6E4303;
+  --brand-orange-90: #472C02;
+  --brand-orange-95: #291A02;
+  --brand-medium-blue-05: #E0EEFF;
+  --brand-medium-blue-10: #B8D5FF;
+  --brand-medium-blue-20: #91BFFF;
+  --brand-medium-blue-30: #75AAFF;
+  --brand-medium-blue-40: #478EFF;
+  --brand-medium-blue-50: #0A60FF;
+  --brand-medium-blue-60: #124FC9;
+  --brand-medium-blue-70: #0E3A99;
+  --brand-medium-blue-80: #15337D;
+  --brand-medium-blue-90: #12275C;
+  --brand-medium-blue-95: #0F214D;
+  --brand-cisco-blue-05: #EBFBFF;
+  --brand-cisco-blue-10: #CCF4FF;
+  --brand-cisco-blue-20: #A8ECFF;
+  --brand-cisco-blue-30: #7AE2FF;
+  --brand-cisco-blue-40: #45D4FF;
+  --brand-cisco-blue-50: #02C8FF;
+  --brand-cisco-blue-60: #11A5CF;
+  --brand-cisco-blue-70: #027494;
+  --brand-cisco-blue-80: #015269;
+  --brand-cisco-blue-90: #013545;
+  --brand-cisco-blue-95: #01242E;
+  --brand-splunk-blue: #000B3F;
+  --brand-dataviz-yellow: #FFD000;
+  --brand-dataviz-green: #00C896;
+  --brand-gradient: linear-gradient(90deg, var(--brand-magenta-50), var(--brand-orange-50));
+  --neutral-dark-5: #04070B;
+  --neutral-dark-15: #0B1118;
+  --neutral-dark-25: #131A23;
+  --neutral-dark-35: #1B232D;
+  --neutral-dark-40: #232C36;
+  --neutral-dark-45: #323B47;
+  --neutral-dark-50: #414A56;
+  --neutral-dark-55: #4F5966;
+  --neutral-dark-60: #5E6874;
+  --neutral-dark-65: #6E7784;
+  --neutral-dark-70: #7F8893;
+  --neutral-dark-80: #929AA4;
+  --neutral-dark-85: #A6ADB6;
+  --neutral-dark-90: #BBC1C9;
+  --neutral-dark-95: #D3D8DF;
+  --neutral-dark-98: #ECF0F5;
+  --neutral-light-95: #E9EEF4;
+  --neutral-light-98: #F2F5FA;
+  --white: #FFFFFF;
+
+  /* Semantic application tokens: brand colors plus product-specific status colors. */
+  --surface-page: #0B1118;
+  --surface-panel: #131A23;
+  --surface-subtle: #1B232D;
+  --surface-raised: #232C36;
+  --text-primary: #F2F5FA;
+  --text-secondary: #BBC1C9;
+  --text-muted: #A6ADB6;
+  --border-subtle: #414A56;
+  --border-strong: #5E6874;
+  --link-dark: #478EFF;
+  --link-light: #0A60FF;
+  --action-primary: #FFFFFF;
+  --action-primary-text: #04070B;
+  --action-primary-hover: #D3D8DF;
+  --focus-ring: #75AAFF;
+  --status-success: #78D09B;
+  --status-warning: #FFCA75;
+  --status-error: #FFE0DB;
+
+  --font-sans: Inter, Arial, sans-serif;
+  --font-data: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-control: 4px;
+  --radius-surface: 4px;
+
+  /* shadcn/ui semantic mapping. */
+  --background: var(--surface-panel);
+  --foreground: var(--text-primary);
+  --primary: var(--action-primary);
+  --primary-foreground: var(--action-primary-text);
+  --secondary: var(--surface-raised);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--surface-subtle);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--neutral-dark-45);
+  --accent-foreground: var(--text-primary);
+  --border: var(--border-subtle);
+  --input: var(--border-strong);
+  --ring: var(--focus-ring);
+  --radius: var(--radius-control);
+}

@@ -1,0 +1,65 @@
+/* Application mapping of the Splunk by Cisco visual language. */
+body { background:var(--surface-page); color:var(--text-primary); font-family:var(--font-sans); }
+.paper h1,.welcome h1,.dialog-head h2 { font-family:var(--font-sans); }
+::selection { background:var(--brand-medium-blue-70, #0E3A99); color:var(--white); }
+button:focus-visible,input:focus-visible,textarea:focus-visible { outline-color:var(--focus-ring); }
+.topbar { background:var(--neutral-dark-5); border-color:var(--border-subtle); color:var(--text-primary); }
+.brand-mark { background:var(--brand-gradient); color:var(--neutral-dark-5); }
+.top-context,.top-link { color:var(--text-secondary); }
+.top-context span:first-child { color:var(--text-primary); }
+.top-link:hover { background:var(--surface-raised); color:var(--white); }
+.top-divider,.action-separator,.toolbar-divider { background:var(--border-subtle); }
+.document-bar,.sidebar,.statusbar { background:var(--surface-panel); border-color:var(--border-subtle); }
+.tab,.sidebar,.editor-top { border-color:var(--border-subtle); }
+.tab.active { background:var(--surface-subtle); }
+.tab.active:after { background:var(--brand-gradient); }
+.tab button,.tab-add,.sidebar-heading,.outline-title small,.outline-number,.breadcrumb,.icon-button,.statusbar { color:var(--text-secondary); }
+.tab.active button,.outline-title,.breadcrumb strong { color:var(--text-primary); }
+.outline-item { color:var(--text-secondary); }
+.outline-item:hover,.icon-button:hover:not(:disabled) { background:var(--surface-raised); color:var(--white); }
+.outline-item.selected { background:var(--neutral-dark-45); color:var(--white); }
+.selected .outline-dot { background:var(--white); }
+.document-kind,.paper-top p,.field small,.guidance-example,.toolbar-hint,.field-hint,.table-head p,.paper-footer { color:var(--text-secondary); }
+.workspace,.main-area,.canvas,.welcome { background:var(--surface-page); }
+.editor-top,.paper,.table-entry { background:var(--surface-panel); }
+.paper,.paper-top,.table-entry,.entry-head,.paper-footer { border-color:var(--border-subtle); }
+.paper h1,.preview h1,.preview h2,.preview h3,.field label,.field-heading label,.table-head h2,.entry-head strong,.guidance-example strong { color:var(--text-primary); }
+.button.primary { background:var(--action-primary); border-color:var(--action-primary); color:var(--action-primary-text); }
+.button.primary:hover { background:var(--action-primary-hover); border-color:var(--action-primary-hover); color:var(--action-primary-text); }
+.button.secondary { background:transparent; border-color:var(--text-secondary); color:var(--text-primary); }
+.button.secondary:hover { background:var(--surface-raised); border-color:var(--white); color:var(--white); }
+.view-switch,.field input,.field textarea,.editor-box,.empty-table { background:var(--neutral-dark-15); }
+.view-switch,.editor-box,.field input,.field textarea,.empty-table { border-color:var(--border-strong); }
+.view-switch button,.field input::placeholder,.field textarea::placeholder { color:var(--text-secondary); }
+.view-switch button.on,.entry-head,.format-toolbar { background:var(--surface-raised); color:var(--text-primary); }
+.field input,.field textarea { color:var(--text-primary); caret-color:var(--white); }
+.field input:focus,.field textarea:focus { border-color:var(--focus-ring); outline-color:var(--focus-ring); }
+.field-heading span { color:var(--text-secondary); }
+.subtle,.text-link,.preview a { color:var(--link-dark); }
+.empty-table,.preview { color:var(--text-secondary); }
+.preview h2,.preview th,.preview td,.preview dl { border-color:var(--border-subtle); }
+.preview dt { background:var(--surface-raised); }
+[data-slot="dialog-content"].dialog,.dialog-head,.choose-row { background:var(--surface-subtle); border-color:var(--border-strong); color:var(--text-primary); }
+.choose-row:hover { background:var(--surface-raised); }
+.dialog-head h2 { color:var(--text-primary); }
+.dialog-head p,.choose-row small,.section-checks label { color:var(--text-secondary); }
+.choose-tag { color:var(--link-dark); }
+.dialog-bottom,.export-buttons,.format-toolbar { border-color:var(--border-subtle); }
+[data-slot="checkbox"] { background:var(--surface-page); border-color:var(--text-secondary); }
+[data-slot="checkbox"][data-state="checked"] { background:var(--brand-medium-blue-50); border-color:var(--brand-medium-blue-40); }
+.export-guidance { background:var(--surface-panel); border-color:var(--border-strong); color:var(--text-primary); }
+.notice { background:var(--surface-raised); color:var(--white); }
+.recovery-alert { background:var(--surface-raised); color:var(--text-primary); border-color:var(--border-strong); }
+.recovery-alert strong { color:var(--white); }
+.welcome-crumb,.welcome-copy,.template-list-header p,.template-list-header>span,.template-row small { color:var(--text-secondary); }
+.welcome-crumb span { color:var(--text-muted); }
+.welcome h1,.template-list-header h2,.template-name { color:var(--text-primary); }
+.heading-cursor { display:inline-block; width:16px; height:3px; vertical-align:baseline; background:var(--brand-gradient); font-size:0; margin-left:5px; }
+.template-action .template-section-count { color:var(--text-secondary); }
+.template-list,.template-row { background:var(--surface-panel); border-color:var(--border-subtle); }
+.template-list-header { border-color:var(--border-subtle); }
+.template-row:hover { background:var(--surface-subtle); }
+.template-icon { background:var(--surface-raised); border-color:var(--border-strong); color:var(--text-primary); }
+.template-index { background:var(--surface-raised); color:var(--text-primary); }
+.template-action { color:var(--link-dark); }
+.template-row:hover .template-action { color:var(--white); }

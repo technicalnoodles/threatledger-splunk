@@ -1,0 +1,82 @@
+/* Direction: a dark analyst workbench with Splunk blue actions and orange markers. */
+:root {
+  color-scheme: dark;
+}
+.app-shell { --outline-width:242px; }
+.document-bar { padding-left:0; }
+.statusbar { justify-content:flex-end; }
+.tab { flex:0 0 var(--outline-width); min-width:0; max-width:var(--outline-width); }
+.sidebar { width:var(--outline-width); }
+button:focus-visible,input:focus-visible,textarea:focus-visible { outline:2px solid #77cdf2; outline-offset:2px; }
+.topbar { height:56px; border-bottom:1px solid #33414c; }
+.brand { font-size:13px; letter-spacing:.01em; }
+.brand-mark { border-radius:3px; }
+.top-context span:first-child { font-size:10px; letter-spacing:.08em; }
+.outline-number { font-variant-numeric:tabular-nums; }
+.paper { box-shadow:0 8px 28px #0004; }
+.view-switch { border:1px solid #374853; }
+.view-switch button.on { box-shadow:none; }
+.field input::placeholder,.field textarea::placeholder { opacity:1; }
+.field input:hover,.field textarea:hover { border-color:#7c929f; }
+.field input:focus,.field textarea:focus { outline:2px solid #24678a; }
+[data-slot="dialog-overlay"] { background:rgba(3,8,12,.78); }
+[data-slot="dialog-content"].dialog { box-shadow:0 16px 45px #0009; }
+.export-error { background:#422521; border-color:#a05a50; color:#ffe0db; }
+
+/* The blueprint library is an operational index, not a set of sample alerts. */
+.welcome-main { max-width:1220px; padding:40px 42px 64px; }
+.welcome-heading { align-items:stretch; padding:0 0 34px; gap:30px; }
+.welcome-intro { min-width:0; max-width:720px; }
+.welcome-crumb { font-size:10px; letter-spacing:.12em; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+.welcome h1 { font-size:34px; margin:14px 0 10px; letter-spacing:-.03em; }
+.heading-cursor { color:#f1813f; margin-left:3px; }
+.welcome-copy { max-width:570px; font-size:13px; line-height:1.65; }
+.welcome-open { margin-top:22px; }
+.template-list-header { padding-top:23px; }
+.template-list-header>span { font:11px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; }
+.template-list { display:grid; grid-auto-rows:1fr; border-radius:3px; }
+.template-row { padding:21px 22px; grid-template-columns:42px minmax(0,1fr) auto; }
+.template-row:focus-visible { outline-offset:-3px; }
+.template-icon { width:40px; height:40px; border:1px solid #3c6171; border-radius:3px; }
+.template-name { font-size:13px; }
+.template-index { font:9px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:.07em; }
+.template-action { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+.template-action .template-section-count { font:10px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace; margin:0; }
+@media(max-width:900px) {
+  .app-shell { --outline-width:200px; }
+  .welcome-main { padding:32px 28px 52px; }
+}
+@media(max-width:650px) {
+  .app-shell { --outline-width:250px; }
+  .topbar { gap:8px; }
+  .top-actions { gap:4px; }
+  .welcome-main { padding:27px 17px 44px; }
+  .welcome-heading { gap:20px; }
+  .welcome h1 { font-size:27px; }
+  .template-row { grid-template-columns:38px minmax(0,1fr); padding:17px 15px; }
+  .template-icon { width:36px; height:36px; }
+  .template-action { grid-column:2; flex-direction:row; align-items:center; justify-content:space-between; }
+  /* Give touch controls room without truncating the section name. */
+  .top-link,.icon-button { min-width:44px; min-height:44px; }
+  .tab { padding-right:2px; }
+  .tab button { min-height:44px; }
+  .tab button:last-child { min-width:44px; justify-content:center; }
+  .editor-top { height:auto; flex-wrap:wrap; gap:2px; padding:4px 12px 8px; }
+  .breadcrumb { flex:1 0 100%; min-height:44px; }
+  .actions { width:100%; justify-content:flex-end; gap:2px; }
+  .actions .button,.view-switch button,.paper-footer button,.table-actions button,.export-buttons .button,.dialog-bottom button { min-height:44px; }
+  .view-switch button { min-width:44px; }
+  .actions .button { font-size:12px; }
+  .field input,.field textarea { font-size:16px; }
+  .field input { min-height:44px; }
+  .outline-item { min-height:44px; }
+  .section-checks { gap:0; }
+  .section-checks label { min-height:44px; }
+  .format-toolbar { height:auto; min-height:48px; gap:0; padding:0 4px; }
+  .format-toolbar .toolbar-divider { margin:0 3px; }
+  .toolbar-hint { display:none; }
+  .paper-top { padding:24px 20px; }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .template-row,.button,.outline-item { transition:background-color 150ms ease-out,border-color 150ms ease-out,color 150ms ease-out; }
+}

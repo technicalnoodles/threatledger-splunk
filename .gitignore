@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tsbuildinfo
+scripts/.schema-bundle.mjs
+.impeccable/
+.planning/
+.DS_Store
+.env
+.env.*
+!.env.example
